@@ -31,15 +31,15 @@ button{
   border-radius: 25px;
 }
 
-#op {
+.op {
   background-color: chocolate;
 }
-#op:hover{
+.op:hover{
   background-color: darkmagenta;
 }
-#num{
+.num{
   background-color: dimgray;
 }
-#num:hover{
+.num:hover{
   background-color: aquamarine;
 }
