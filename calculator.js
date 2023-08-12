@@ -11,13 +11,16 @@ function divide(num1,num2){
     return num1/num2;
 }
 function operate(num1,op,num2){
-    let temp =  parseInt(num1);
+    let temp =  num1;
    
-    let temp2 =  parseInt(num2);
+    let temp2 =  num2;
     switch(op){
         case '+':
-            
-            return temp+temp2;
+            if(decimalp==false){
+            return parseInt(temp)+parseInt(temp2);
+            }else{
+                return parseFloat(temp)+parseFloat(temp2);
+            }
             
         case '-':
             return temp-temp2;
@@ -33,6 +36,7 @@ function operate(num1,op,num2){
             
     }
 }
+let decimalp=false;
 let queue = [];
 function update(screen,text){
     let display = document.querySelector(screen);
@@ -65,12 +69,24 @@ ops.forEach(btn => {
         
         
         if(queue[0]==undefined){
-            queue.push(nums.innerHTML);
+            if(decimal_button==false){
+                let temp = parseInt(nums.innerHTML);
+                queue.push(temp);
+            }else{
+                let temp = parseFloat(nums.innerHTML);
+                        queue.push(temp);
+            }
             queue.push(text);
             display.innerHTML = queue[0]+" "+text;
         }else{
             if(nums.innerHTML!=""){
-            queue.push(nums.innerHTML);
+                if(decimal_button==false){
+                    let temp = parseInt(nums.innerHTML);
+                    queue.push(temp);
+                    }else{
+                        let temp = parseFloat(nums.innerHTML);
+                        queue.push(temp);
+                    }
             queue.push(text);
             update('.display1',operate(queue[0],queue[1],queue[2]) +" "+queue[3]);
             
@@ -89,6 +105,7 @@ ops.forEach(btn => {
             }
             
         }
+        decimalp=false;
         nums.innerHTML="";
         //console.log(queue);
     });
@@ -98,7 +115,7 @@ let reset = document.querySelector('.reset');
 reset.addEventListener("click",function(){
     let empty=[];
     queue=empty;
-  
+    decimalp=false;
     update('.display1',"");
     update('.display2',"");
 });
@@ -114,6 +131,15 @@ operate_button.addEventListener("click",function(){
     queue.push(temp);
     
     update('.display2',"");
+    decimalp=false;
     console.log (queue);
 
+});
+let decimal_button = document.querySelector('.decimal');
+decimal_button.addEventListener("click",function(){
+    if(decimalp==false){
+        let display = document.querySelector('.display2');
+        display.innerHTML=display.innerHTML+'.';
+        decimalp=true;
+    }
 });

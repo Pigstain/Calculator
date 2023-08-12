@@ -73,3 +73,9 @@ button{
 .operate:hover{
   background-color: darkmagenta;
 }
+.decimal{
+  background-color: chocolate;
+}
+.decimal:hover{
+  background-color: darkmagenta;
+}
