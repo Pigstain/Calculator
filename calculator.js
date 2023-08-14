@@ -16,9 +16,10 @@ function operate(num1,op,num2){
     let temp2 =  num2;
     switch(op){
         case '+':
-            if(decimalp==false){
+            if(decimalp==false && pressc==0){
             return parseInt(temp)+parseInt(temp2);
             }else{
+                console.log("deccccc");
                 return parseFloat(temp)+parseFloat(temp2);
             }
             
@@ -37,6 +38,7 @@ function operate(num1,op,num2){
     }
 }
 let decimalp=false;
+pressc=0;
 let queue = [];
 function update(screen,text){
     let display = document.querySelector(screen);
@@ -116,6 +118,7 @@ reset.addEventListener("click",function(){
     let empty=[];
     queue=empty;
     decimalp=false;
+    pressc=0;
     update('.display1',"");
     update('.display2',"");
 });
@@ -132,6 +135,7 @@ operate_button.addEventListener("click",function(){
     
     update('.display2',"");
     decimalp=false;
+    pressc=0;
     console.log (queue);
 
 });
@@ -141,5 +145,7 @@ decimal_button.addEventListener("click",function(){
         let display = document.querySelector('.display2');
         display.innerHTML=display.innerHTML+'.';
         decimalp=true;
+        pressc++;
+        
     }
 });
